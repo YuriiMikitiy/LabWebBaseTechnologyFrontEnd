@@ -1,37 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import FlightSearchForm from '../components/FlightSearchForm';
 import FlightList from '../components/FlightList';
+import LoginPage from '../components/LoginPage';
 
-const mockFlights = [
-    { id: 1, from: 'Kyiv', to: 'Lviv', time: '08:00', status: 'On Time' },
-    { id: 2, from: 'Kyiv', to: 'Odesa', time: '10:30', status: 'Delayed' },
-    { id: 3, from: 'Lviv', to: 'Kharkiv', time: '12:15', status: 'On Time' },
-];
-
-function App() {
-    const [flights, setFlights] = useState(mockFlights);
+function AppContent() {
+    const [flights, setFlights] = useState([]);
     const [search, setSearch] = useState({ from: '', to: '', date: '' });
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('https://localhost:44392/Flight')
+            .then((res) => res.json())
+            .then((data) => setFlights(data))
+            .catch((err) => console.error('Error fetching flights:', err));
+    }, []);
 
     const handleSearch = (searchData) => {
         setSearch(searchData);
-        const filtered = mockFlights.filter(
-            (flight) =>
-                flight.from.toLowerCase().includes(searchData.from.toLowerCase()) &&
-                flight.to.toLowerCase().includes(searchData.to.toLowerCase())
-        );
-        setFlights(filtered);
+        fetch('https://localhost:44392/Flight')
+            .then((res) => res.json())
+            .then((data) => {
+                const filtered = data.filter(
+                    (flight) =>
+                        flight.from.toLowerCase().includes(searchData.from.toLowerCase()) &&
+                        flight.to.toLowerCase().includes(searchData.to.toLowerCase())
+                );
+                setFlights(filtered);
+            })
+            .catch((err) => console.error('Error fetching flights:', err));
+    };
+
+    const handleNavClick = (path) => {
+        navigate(path);
     };
 
     return (
-        <div className="h-full bg-gray-800">
-            <Navbar />
-            <main className="w-auto mx-auto p-6">
-                <FlightSearchForm onSearch={handleSearch} />
-                <FlightList flights={flights} />
-            </main>
+        <div className="h-auto bg-gray-800 text-gray-200">
+            <Navbar onNavClick={handleNavClick} />
+            <Routes>
+                <Route path="/" element={
+                    <main className="max-w-6xl mx-auto p-6">
+                        <FlightSearchForm onSearch={handleSearch} />
+                        <FlightList flights={flights} />
+                    </main>
+                } />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/flights" element={
+                    <main className="max-w-6xl mx-auto p-6">
+                        <FlightSearchForm onSearch={handleSearch} />
+                        <FlightList flights={flights} />
+                    </main>
+                } />
+                <Route path="/support" element={
+                    <main className="max-w-6xl mx-auto p-6 text-center">
+                        <h2 className="text-2xl font-semibold">Support Page</h2>
+                        <p className="text-gray-400 mt-4">Contact us at support@airportx.ua for assistance!</p>
+                    </main>
+                } />
+            </Routes>
         </div>
     );
+}
+
+function App() {
+    return <AppContent />;
 }
 
 export default App;
