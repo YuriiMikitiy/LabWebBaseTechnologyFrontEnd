@@ -6,6 +6,7 @@ import FlightList from '../components/FlightList';
 import LoginPage from '../components/LoginPage';
 import ChatBot from '../components/ChatBot';
 import UserProfile from '../components/UserProfile';
+import FlightPredictor from '../components/FlightPredictor';
 
 function AppContent() {
     const [flights, setFlights] = useState([]);
@@ -39,7 +40,7 @@ function AppContent() {
     };
 
     return (
-        <div className="h-full bg-gray-800 text-gray-200">
+        <div className="min-h-screen bg-gray-800 text-gray-200">
             <Navbar onNavClick={handleNavClick} />
             <Routes>
                 <Route path="/" element={
@@ -53,6 +54,7 @@ function AppContent() {
                     <main className="max-w-6xl mx-auto p-6">
                         <FlightSearchForm onSearch={handleSearch} />
                         <FlightList flights={flights} />
+                        <FlightPredictor />
                     </main>
                 } />
                 <Route path="/support" element={
