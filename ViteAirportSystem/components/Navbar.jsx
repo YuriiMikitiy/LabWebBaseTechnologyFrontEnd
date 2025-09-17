@@ -2,7 +2,6 @@ import React from 'react';
 import { FaPlane } from 'react-icons/fa';
 
 function Navbar({ onNavClick }) {
-    // Перевірка, чи функція передана
     const handleClick = (path) => {
         if (typeof onNavClick === 'function') {
             onNavClick(path);
@@ -21,6 +20,7 @@ function Navbar({ onNavClick }) {
                     <button onClick={() => handleClick('/')} className="text-gray-300 mx-4 hover:text-gray-100 transition">Home</button>
                     <button onClick={() => handleClick('/flights')} className="text-gray-300 mx-4 hover:text-gray-100 transition">Flights</button>
                     <button onClick={() => handleClick('/support')} className="text-gray-300 mx-4 hover:text-gray-100 transition">Support</button>
+                    <button onClick={() => handleClick('/profile')} className="text-gray-300 mx-4 hover:text-gray-100 transition">Profile</button>
                 </nav>
             </div>
         </header>

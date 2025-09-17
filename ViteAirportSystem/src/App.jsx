@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import FlightSearchForm from '../components/FlightSearchForm';
 import FlightList from '../components/FlightList';
 import LoginPage from '../components/LoginPage';
+import ChatBot from '../components/ChatBot';
+import UserProfile from '../components/UserProfile';
 
 function AppContent() {
     const [flights, setFlights] = useState([]);
@@ -37,7 +39,7 @@ function AppContent() {
     };
 
     return (
-        <div className="h-auto bg-gray-800 text-gray-200">
+        <div className="h-full bg-gray-800 text-gray-200">
             <Navbar onNavClick={handleNavClick} />
             <Routes>
                 <Route path="/" element={
@@ -54,11 +56,14 @@ function AppContent() {
                     </main>
                 } />
                 <Route path="/support" element={
-                    <main className="max-w-6xl mx-auto p-6 text-center">
-                        <h2 className="text-2xl font-semibold">Support Page</h2>
-                        <p className="text-gray-400 mt-4">Contact us at support@airportx.ua for assistance!</p>
+                    <main className="max-w-6xl mx-auto p-6">
+                        <h2 className="text-2xl font-semibold mb-4">Support Page</h2>
+                        <p className="text-gray-400 mb-6">Contact us at support@airportx.ua for assistance!</p>
+                        <ChatBot />
                     </main>
                 } />
+                <Route path="/chat" element={<ChatBot />} />
+                <Route path="/profile" element={<UserProfile />} />
             </Routes>
         </div>
     );
