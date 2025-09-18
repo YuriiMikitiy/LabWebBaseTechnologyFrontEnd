@@ -27,7 +27,7 @@ function UserProfile() {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('${process.env.VITE_API_URL}/api/auth/register', {
+            const response = await fetch('https://labwebbasetechnologybackend.onrender.com/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData)
@@ -47,7 +47,7 @@ function UserProfile() {
    const handleLogin = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('${process.env.VITE_API_URL}/api/auth/login', {
+        const response = await fetch('https://labwebbasetechnologybackend.onrender.com/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: userData.email, password: userData.password })

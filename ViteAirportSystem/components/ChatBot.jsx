@@ -16,7 +16,7 @@ function ChatBot() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('${process.env.VITE_API_URL}/api/Chat', {
+            const response = await fetch('https://labwebbasetechnologybackend.onrender.com/api/Chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: input }),

@@ -8,7 +8,7 @@ function FlightPredictor() {
     const [model, setModel] = useState(null);
 
     useEffect(() => {
-        fetch('${process.env.VITE_API_URL}/flight/data')
+        fetch('https://labwebbasetechnologybackend.onrender.com/flight/data')
             .then((res) => res.json())
             .then((data) => {
                 console.log('Raw training data:', data);
