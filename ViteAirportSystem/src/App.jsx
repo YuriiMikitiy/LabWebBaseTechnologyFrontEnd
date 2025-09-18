@@ -7,6 +7,7 @@ import LoginPage from '../components/LoginPage';
 import ChatBot from '../components/ChatBot';
 import UserProfile from '../components/UserProfile';
 import FlightPredictor from '../components/FlightPredictor';
+import AnalyticsDashboard from '../components/AnalyticsDashboard';
 
 function AppContent() {
     const [flights, setFlights] = useState([]);
@@ -66,6 +67,7 @@ function AppContent() {
                 } />
                 <Route path="/chat" element={<ChatBot />} />
                 <Route path="/profile" element={<UserProfile />} />
+                <Route path="/analytics" element={<AnalyticsDashboard />} />
             </Routes>
         </div>
     );
