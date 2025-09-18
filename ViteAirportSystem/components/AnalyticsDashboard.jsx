@@ -8,26 +8,28 @@ function AnalyticsDashboard() {
 
   useEffect(() => {
     fetch('https://labwebbasetechnologybackend.onrender.com/api/analytics/logs')
-      .then(res => res.json())
-      .then(data => {
-        const labels = data.map(log => new Date(log.timestamp).toLocaleTimeString());
-        const counts = data.map(log => log.count);
+        .then(res => res.json())
+        .then(data => {
+            console.log('Logs from backend:', data); // <- перевірка
+            const labels = data.map(log => new Date(log.timestamp).toLocaleTimeString());
+            const counts = data.map(log => log.count);
 
-        setChartData({
-          labels,
-          datasets: [
-            {
-              label: 'Кількість запитів',
-              data: counts,
-              borderColor: '#36A2EB',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              fill: true,
-            },
-          ],
-        });
-      })
-      .catch(err => console.error('Error fetching analytics:', err));
-  }, []);
+            setChartData({
+                labels,
+                datasets: [
+                    {
+                        label: 'Кількість запитів',
+                        data: counts,
+                        borderColor: '#36A2EB',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        fill: true,
+                    },
+                ],
+            });
+        })
+        .catch(err => console.error('Error fetching analytics:', err));
+}, []);
+
 
   useEffect(() => {
     if (chartRef.current) {
