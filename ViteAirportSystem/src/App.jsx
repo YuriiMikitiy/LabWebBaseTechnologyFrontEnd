@@ -14,7 +14,7 @@ function AppContent() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('https://localhost:44392/Flight')
+        fetch('${process.env.VITE_API_URL}/flight')
             .then((res) => res.json())
             .then((data) => setFlights(data))
             .catch((err) => console.error('Error fetching flights:', err));
@@ -22,7 +22,7 @@ function AppContent() {
 
     const handleSearch = (searchData) => {
         setSearch(searchData);
-        fetch('https://localhost:44392/Flight')
+        fetch('${process.env.VITE_API_URL}/flight')
             .then((res) => res.json())
             .then((data) => {
                 const filtered = data.filter(
