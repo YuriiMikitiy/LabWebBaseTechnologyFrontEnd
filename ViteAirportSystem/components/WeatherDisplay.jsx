@@ -9,7 +9,7 @@ function WeatherDisplay({ city }) {
         if (!city) return;
 
         setLoading(true);
-        fetch(`https://labwebbasetechnologybackend.onrender.com/api/weather/current/${city}`)
+        fetch(`https://labwebbasetechnologybackend.onrender.com/Flight/weather/${city}`)
             .then((res) => {
                 if (!res.ok) throw new Error('Failed to fetch weather');
                 return res.json();
