@@ -68,6 +68,7 @@ function AppContent() {
                 <Route path="/chat" element={<ChatBot />} />
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/analytics" element={<AnalyticsDashboard />} />
+                
             </Routes>
         </div>
     );
