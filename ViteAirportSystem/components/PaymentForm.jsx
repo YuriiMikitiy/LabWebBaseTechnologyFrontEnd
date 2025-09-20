@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe('pk_test_51S9Sn5LzJLwI34jYgQfeRTCJhHzQMKYGjqtfattiLCtrmwBHtFB28uQzZIdTIAuT5Em12s8jTdGEmgE3fUHfN16Z004qc8PeTn');
 
 function PaymentForm({ booking }) {
     const stripe = useStripe();
