@@ -22,7 +22,7 @@ function PaymentForm({ booking }) {
             Amount: 100.00 // Приклад суми (замініть на динамічну логіку)
         };
 
-        const response = await fetch(`https://labwebbasetechnologybackend.onrender.com/payment/create-checkout-session`, {
+        const response = await fetch(`https://labwebbasetechnologybackend.onrender.com/api/payment/create-checkout-session`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(paymentRequest),
