@@ -6,7 +6,7 @@ function WeatherDisplay({ city }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!city) return;
+        // if (!city) return;
 
         setLoading(true);
         fetch(`https://labwebbasetechnologybackend.onrender.com/Flight/weather/ivano-frankivsk`)
