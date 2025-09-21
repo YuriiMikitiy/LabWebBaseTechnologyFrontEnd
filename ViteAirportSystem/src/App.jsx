@@ -19,7 +19,7 @@ function AppContent() {
 
     useEffect(() => {
         const fetchInitialFlights = async () => {
-            const response = await fetch('https://labwebbasetechnologybackend.onrender.com/api/flights');
+            const response = await fetch('https://labwebbasetechnologybackend.onrender.com/api/flight');
             const data = await response.json();
             setFlights(data);
         };
@@ -28,7 +28,7 @@ function AppContent() {
 
     const handleSearch = async (searchData) => {
         setSearch(searchData);
-        const response = await fetch('https://labwebbasetechnologybackend.onrender.com/api/flights');
+        const response = await fetch('https://labwebbasetechnologybackend.onrender.com/api/flight');
         const data = await response.json();
         const filtered = data.filter(
             (flight) =>
