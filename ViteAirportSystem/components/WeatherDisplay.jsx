@@ -29,21 +29,32 @@ function WeatherDisplay({ city }) {
     if (!weather) return null;
 
     return (
-        <div className="mt-4 p-4 bg-gray-600 rounded-lg shadow">
-            <h3 className="text-lg font-semibold">Weather in {weather.city}</h3>
-            <p>Temperature: {weather.temperature}°C</p>
-            <p>Condition: {weather.description}</p>
+    <div className="mt-4 p-4 bg-gray-600 rounded-lg shadow">
+        <h3 className="text-lg font-semibold">
+            Weather {city ? `in ${city}` : ""}
+        </h3>
+        <p>Temperature: {weather.temperature}°C</p>
+        <p>Condition: {weather.description}</p>
+
+        {weather.humidity !== undefined && (
             <p>Humidity: {weather.humidity}%</p>
-            <h4 className="mt-2 font-semibold">Flight Status Updates:</h4>
-            <ul>
-                {weather.updatedFlights.map((flight) => (
-                    <li key={flight.Id} className="text-gray-300">
-                        Flight {flight.Id}: {flight.Status}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+        )}
+
+        {weather.updatedFlights && weather.updatedFlights.length > 0 && (
+            <>
+                <h4 className="mt-2 font-semibold">Flight Status Updates:</h4>
+                <ul>
+                    {weather.updatedFlights.map((flight) => (
+                        <li key={flight.Id} className="text-gray-300">
+                            Flight {flight.Id}: {flight.Status}
+                        </li>
+                    ))}
+                </ul>
+            </>
+        )}
+    </div>
+);
+
 }
 
 export default WeatherDisplay;
